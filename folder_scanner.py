@@ -10,8 +10,12 @@ def scan(path:str) -> list[str]:
     scan_counter : int = 0
     while stack:
         scan_counter += 1
-        if(scan_counter % 500):
-            print(f"Stack counter: {stack_counter}\nPerformed {scan_counter} scans", end='\r')
+        if(scan_counter % 500 == 0):
+            print(
+                f"\r\033[KPending: {stack_counter} | Scanned: {scan_counter}",
+                end="",
+                flush=True
+            )
         path = stack.pop()
         stack_counter -= 1
         try:
